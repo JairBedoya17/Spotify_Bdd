@@ -402,6 +402,36 @@ INSERT INTO `Usuario` VALUES (1,'Annadiane','Nicklinson','2020-05-04',1,'https:/
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `cantidad_tarjetas_registradas`
+--
+
+DROP TABLE IF EXISTS `cantidad_tarjetas_registradas`;
+/*!50001 DROP VIEW IF EXISTS `cantidad_tarjetas_registradas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `cantidad_tarjetas_registradas` (
+  `Numero_Tarjeta` tinyint NOT NULL,
+  `Nombre_Usuario` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `reporte_canciones_mas_escuchadas`
+--
+
+DROP TABLE IF EXISTS `reporte_canciones_mas_escuchadas`;
+/*!50001 DROP VIEW IF EXISTS `reporte_canciones_mas_escuchadas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `reporte_canciones_mas_escuchadas` (
+  `Nombre_Cancion` tinyint NOT NULL,
+  `Nombre_Disco` tinyint NOT NULL,
+  `Id_Artista` tinyint NOT NULL,
+  `count(Id_LR)` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Final view structure for view `Report_Ingresos_User`
 --
 
@@ -419,6 +449,44 @@ UNLOCK TABLES;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `cantidad_tarjetas_registradas`
+--
+
+/*!50001 DROP TABLE IF EXISTS `cantidad_tarjetas_registradas`*/;
+/*!50001 DROP VIEW IF EXISTS `cantidad_tarjetas_registradas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `cantidad_tarjetas_registradas` AS select `Pago`.`Numero_Tarjeta` AS `Numero_Tarjeta`,`Usuario`.`Nombre_Usuario` AS `Nombre_Usuario` from (`Pago` join `Usuario`) where `Usuario`.`Id_Usuario` = `Pago`.`Id_Usuario` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `reporte_canciones_mas_escuchadas`
+--
+
+/*!50001 DROP TABLE IF EXISTS `reporte_canciones_mas_escuchadas`*/;
+/*!50001 DROP VIEW IF EXISTS `reporte_canciones_mas_escuchadas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `reporte_canciones_mas_escuchadas` AS select `Cancion`.`Nombre_Cancion` AS `Nombre_Cancion`,`Disco`.`Nombre_Disco` AS `Nombre_Disco`,`Artistas`.`Id_Artista` AS `Id_Artista`,count(`Lista_Reproduccion`.`Id_LR`) AS `count(Id_LR)` from (((`Cancion` join `Disco`) join `Artistas`) join `Lista_Reproduccion`) where `Cancion`.`Id_Disco` = `Disco`.`Id_Disco` and `Artistas`.`Id_Artista` = `Artistas`.`Id_Artista` group by `Cancion`.`Nombre_Cancion` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -429,4 +497,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01 17:39:14
+-- Dump completed on 2020-06-01 22:49:26
