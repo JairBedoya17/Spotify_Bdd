@@ -247,21 +247,6 @@ INSERT INTO `Pago` VALUES (1,14,'3528884653846778','3544649510663462','2019-08-2
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `Report_Ingresos_User`
---
-
-DROP TABLE IF EXISTS `Report_Ingresos_User`;
-/*!50001 DROP VIEW IF EXISTS `Report_Ingresos_User`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `Report_Ingresos_User` (
-  `Ingreso` tinyint NOT NULL,
-  `Nombre_Usuario` tinyint NOT NULL,
-  `cantRegistros` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
-
---
 -- Table structure for table `Restriccion`
 --
 
@@ -402,20 +387,6 @@ INSERT INTO `Usuario` VALUES (1,'Annadiane','Nicklinson','2020-05-04',1,'https:/
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `cantidad_tarjetas_registradas`
---
-
-DROP TABLE IF EXISTS `cantidad_tarjetas_registradas`;
-/*!50001 DROP VIEW IF EXISTS `cantidad_tarjetas_registradas`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `cantidad_tarjetas_registradas` (
-  `Numero_Tarjeta` tinyint NOT NULL,
-  `Nombre_Usuario` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
-
---
 -- Temporary table structure for view `reporte_canciones_mas_escuchadas`
 --
 
@@ -432,42 +403,33 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
--- Final view structure for view `Report_Ingresos_User`
+-- Temporary table structure for view `view_report_Ingresos_User`
 --
 
-/*!50001 DROP TABLE IF EXISTS `Report_Ingresos_User`*/;
-/*!50001 DROP VIEW IF EXISTS `Report_Ingresos_User`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `Report_Ingresos_User` AS select `Auditoria`.`Ingreso` AS `Ingreso`,`Usuario`.`Nombre_Usuario` AS `Nombre_Usuario`,`Auditoria`.`cantRegistros` AS `cantRegistros` from (`Auditoria` join `Usuario`) where `Auditoria`.`Id_Auditoria` = `Usuario`.`Id_Usuario` order by `Auditoria`.`cantRegistros` desc */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `view_report_Ingresos_User`;
+/*!50001 DROP VIEW IF EXISTS `view_report_Ingresos_User`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_report_Ingresos_User` (
+  `Ingreso` tinyint NOT NULL,
+  `Nombre_Usuario` tinyint NOT NULL,
+  `cantRegistros` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
--- Final view structure for view `cantidad_tarjetas_registradas`
+-- Temporary table structure for view `view_reporte_cantidad_tarjetas_registradas`
 --
 
-/*!50001 DROP TABLE IF EXISTS `cantidad_tarjetas_registradas`*/;
-/*!50001 DROP VIEW IF EXISTS `cantidad_tarjetas_registradas`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `cantidad_tarjetas_registradas` AS select `Pago`.`Numero_Tarjeta` AS `Numero_Tarjeta`,`Usuario`.`Nombre_Usuario` AS `Nombre_Usuario` from (`Pago` join `Usuario`) where `Usuario`.`Id_Usuario` = `Pago`.`Id_Usuario` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `view_reporte_cantidad_tarjetas_registradas`;
+/*!50001 DROP VIEW IF EXISTS `view_reporte_cantidad_tarjetas_registradas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_reporte_cantidad_tarjetas_registradas` (
+  `Numero_Tarjeta` tinyint NOT NULL,
+  `Nombre_Usuario` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Final view structure for view `reporte_canciones_mas_escuchadas`
@@ -487,6 +449,44 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_report_Ingresos_User`
+--
+
+/*!50001 DROP TABLE IF EXISTS `view_report_Ingresos_User`*/;
+/*!50001 DROP VIEW IF EXISTS `view_report_Ingresos_User`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_report_Ingresos_User` AS select `Auditoria`.`Ingreso` AS `Ingreso`,`Usuario`.`Nombre_Usuario` AS `Nombre_Usuario`,`Auditoria`.`cantRegistros` AS `cantRegistros` from (`Auditoria` join `Usuario`) where `Auditoria`.`Id_Auditoria` = `Usuario`.`Id_Usuario` order by `Auditoria`.`cantRegistros` desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_reporte_cantidad_tarjetas_registradas`
+--
+
+/*!50001 DROP TABLE IF EXISTS `view_reporte_cantidad_tarjetas_registradas`*/;
+/*!50001 DROP VIEW IF EXISTS `view_reporte_cantidad_tarjetas_registradas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_reporte_cantidad_tarjetas_registradas` AS select `Pago`.`Numero_Tarjeta` AS `Numero_Tarjeta`,`Usuario`.`Nombre_Usuario` AS `Nombre_Usuario` from (`Pago` join `Usuario`) where `Usuario`.`Id_Usuario` = `Pago`.`Id_Usuario` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -497,4 +497,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01 22:49:26
+-- Dump completed on 2020-06-01 22:52:27
